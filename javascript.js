@@ -9,8 +9,7 @@ function playRound(playerSelection, computerSelection) {
   // rock > scissors
   // paper > rock
   //  scissors > paper
-  // if playerSelect and computerSelect is same
-  //    then try again and round is not counted
+
   // if player wins
   //    then player gets one point and round is counted
   // if computer wins
@@ -23,11 +22,14 @@ function playRound(playerSelection, computerSelection) {
     playerScore = playerScore + 1;
     result = `You Win! ${playerSelection} beats ${computerSelection}`;
   } else if (playerSelection === "paper" && computerSelection === "rock") {
+    playerScore = playerScore + 1;
     result = `You Win! ${playerSelection} beats ${computerSelection}`;
   } else if (playerSelection === "scissors" && computerSelection === "paper") {
+    playerScore = playerScore + 1;
     result = `You Win! ${playerSelection} beats ${computerSelection}`;
   } else {
-    result = `You Lost! ${playerSelection} beats ${computerSelection}`;
+    computerScore = computerScore + 1;
+    result = `You Lost! ${computerSelection} beats ${playerSelection}`;
   }
 }
 
@@ -36,14 +38,27 @@ let computerScore = 0;
 let result;
 
 function game() {
-  // track points and round
-  for (let i = 0; i < 5; i++) {
+  // if playerSelect and computerSelect is same
+  //    then try again and round is not counted
+  // else
+  //    count points and round
+  let rounds = 5;
+
+  for (let i = 0; i < rounds; i++) {
     let playerSelection = prompt("Rock, Paper or Scissors?").toLowerCase();
     let computerSelection = getComputerChoice().toLowerCase();
-    console.log(playerSelection);
-    console.log(computerSelection);
+
+    if (playerSelection === computerSelection) {
+      rounds = rounds + 1;
+    } else {
+      rounds = rounds;
+    }
+
+    console.log(`You: ${playerSelection}`);
+    console.log(`Computer: ${computerSelection}`);
     playRound(playerSelection, computerSelection);
     console.log(result);
+    console.log(`You: ${playerScore} Computer: ${computerScore}`);
   }
 }
 
