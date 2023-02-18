@@ -6,18 +6,8 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-  // rock > scissors
-  // paper > rock
-  //  scissors > paper
-
-  // if player wins
-  //    then player gets one point and round is counted
-  // if computer wins
-  //    then computer gets one point and round is counted
-  // if five rounds are completed
-  //    then total the points and select a winner
   if (playerSelection === computerSelection) {
-    result = "Oops! play again";
+    result = "Oops! Tie, play again";
   } else if (playerSelection === "rock" && computerSelection === "scissors") {
     playerScore = playerScore + 1;
     result = `You Win! ${playerSelection} beats ${computerSelection}`;
@@ -38,10 +28,6 @@ let computerScore = 0;
 let result;
 
 function game() {
-  // if playerSelect and computerSelect is same
-  //    then try again and round is not counted
-  // else
-  //    count points and round
   let rounds = 5;
 
   for (let i = 0; i < rounds; i++) {
@@ -60,9 +46,13 @@ function game() {
   }
 
   if (playerScore > computerScore) {
-    console.log("Player Won!");
+    console.log(
+      `VICTORY. You scored ${playerScore} against computer in 5 rounds.`
+    );
   } else {
-    console.log("Computer Won!");
+    console.log(
+      `DEFEAT. Computer scored ${computerScore} against you in 5 rounds.`
+    );
   }
 }
 
