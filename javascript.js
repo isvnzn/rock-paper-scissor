@@ -17,7 +17,7 @@ function playRound(playerSelection, computerSelection) {
   // if five rounds are completed
   //    then total the points and select a winner
   if (playerSelection === computerSelection) {
-    result = "Oops! One more time";
+    result = "Oops! play again";
   } else if (playerSelection === "rock" && computerSelection === "scissors") {
     playerScore = playerScore + 1;
     result = `You Win! ${playerSelection} beats ${computerSelection}`;
@@ -54,11 +54,15 @@ function game() {
       rounds = rounds;
     }
 
-    console.log(`You: ${playerSelection}`);
-    console.log(`Computer: ${computerSelection}`);
     playRound(playerSelection, computerSelection);
     console.log(result);
     console.log(`You: ${playerScore} Computer: ${computerScore}`);
+  }
+
+  if (playerScore > computerScore) {
+    console.log("Player Won!");
+  } else {
+    console.log("Computer Won!");
   }
 }
 
