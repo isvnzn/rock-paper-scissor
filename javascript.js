@@ -2,7 +2,7 @@ function getComputerChoice() {
   let choices = ["Rock", "Paper", "Scissors"];
   let computerSelect = Math.floor(Math.random() * choices.length);
 
-  return choices[computerSelect].toLowerCase();
+  return choices[computerSelect];
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -19,12 +19,27 @@ function playRound(playerSelection, computerSelection) {
   //    then total the points and select a winner
 
   if (playerSelection === "rock" && computerSelection === "scissors") {
-    console.log("You win");
+    playerScore = playerScore + 1;
+    return (result = "You Win! Rock beats Scissors");
+  } else {
+    return (result = "You lost");
   }
 }
 
-const playerSelection = prompt("Rock, Paper or Scissors?").toLowerCase();
-const computerSelection = getComputerChoice();
-playRound(playerSelection, computerSelection);
-console.log(computerSelection);
-// console.log(playRound(playerSelection, computerSelection));
+let playerScore = 0;
+let computerScore = 0;
+let result;
+
+function game() {
+  // track points and round
+  for (let i = 0; i < 5; i++) {
+    let playerSelection = prompt("Rock, Paper or Scissors?").toLowerCase();
+    let computerSelection = getComputerChoice().toLowerCase();
+    console.log(playerSelection);
+    console.log(computerSelection);
+    playRound(playerSelection, computerSelection);
+    console.log(result);
+  }
+}
+
+game();
