@@ -17,12 +17,17 @@ function playRound(playerSelection, computerSelection) {
   //    then computer gets one point and round is counted
   // if five rounds are completed
   //    then total the points and select a winner
-
-  if (playerSelection === "rock" && computerSelection === "scissors") {
+  if (playerSelection === computerSelection) {
+    result = "Oops! One more time";
+  } else if (playerSelection === "rock" && computerSelection === "scissors") {
     playerScore = playerScore + 1;
-    return (result = "You Win! Rock beats Scissors");
+    result = `You Win! ${playerSelection} beats ${computerSelection}`;
+  } else if (playerSelection === "paper" && computerSelection === "rock") {
+    result = `You Win! ${playerSelection} beats ${computerSelection}`;
+  } else if (playerSelection === "scissors" && computerSelection === "paper") {
+    result = `You Win! ${playerSelection} beats ${computerSelection}`;
   } else {
-    return (result = "You lost");
+    result = `You Lost! ${playerSelection} beats ${computerSelection}`;
   }
 }
 
