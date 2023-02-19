@@ -28,31 +28,25 @@ let computerScore = 0;
 let result;
 
 function game() {
-  let rounds = 5;
+  let rounds = 100;
 
-  for (let i = 0; i < rounds; i++) {
+  for (let i = 1; i < rounds; i++) {
     let playerSelection = prompt("Rock, Paper or Scissors?").toLowerCase();
     let computerSelection = getComputerChoice().toLowerCase();
-
-    if (playerSelection === computerSelection) {
-      rounds = rounds + 1;
-    } else {
-      rounds = rounds;
-    }
 
     playRound(playerSelection, computerSelection);
     console.log(result);
     console.log(`You: ${playerScore} Computer: ${computerScore}`);
+
+    if (playerScore === 5 || computerScore === 5) {
+      break;
+    }
   }
 
   if (playerScore > computerScore) {
-    console.log(
-      `VICTORY. You scored ${playerScore} against computer in 5 rounds.`
-    );
+    console.log("VICTORY");
   } else {
-    console.log(
-      `DEFEAT. Computer scored ${computerScore} against you in 5 rounds.`
-    );
+    console.log("DEFEAT");
   }
 }
 
