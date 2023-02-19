@@ -6,26 +6,33 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-  if (playerSelection === computerSelection) {
-    result = "Oops! Tie, play again";
-  } else if (playerSelection === "rock" && computerSelection === "scissors") {
-    playerScore = playerScore + 1;
-    result = `You Win! ${playerSelection} beats ${computerSelection}`;
-  } else if (playerSelection === "paper" && computerSelection === "rock") {
-    playerScore = playerScore + 1;
-    result = `You Win! ${playerSelection} beats ${computerSelection}`;
-  } else if (playerSelection === "scissors" && computerSelection === "paper") {
-    playerScore = playerScore + 1;
-    result = `You Win! ${playerSelection} beats ${computerSelection}`;
-  } else {
-    computerScore = computerScore + 1;
-    result = `You Lost! ${computerSelection} beats ${playerSelection}`;
+  let win = `You Win! (You) ${playerSelection} beats (Computer) ${computerSelection}`;
+  let lose = `You Lose! (Computer) ${computerSelection} beats (You) ${playerSelection}`;
+
+  switch (playerSelection) {
+    case "rock":
+      computerSelection === "scissors"
+        ? (console.log(win), playerScore++)
+        : (console.log(lose), computerScore++);
+      break;
+    case "paper":
+      computerSelection === "rock"
+        ? (console.log(win), playerScore++)
+        : (console.log(lose), computerScore++);
+      break;
+    case "scissors":
+      computerSelection === "paper"
+        ? (console.log(win), playerScore++)
+        : (console.log(lose), computerScore++);
+      break;
+    default:
+      console.log("Something went wrong");
+      break;
   }
 }
 
 let playerScore = 0;
 let computerScore = 0;
-let result;
 
 function game() {
   let rounds = 100;
@@ -34,9 +41,12 @@ function game() {
     let playerSelection = prompt("Rock, Paper or Scissors?").toLowerCase();
     let computerSelection = getComputerChoice().toLowerCase();
 
-    playRound(playerSelection, computerSelection);
-    console.log(result);
-    console.log(`You: ${playerScore} Computer: ${computerScore}`);
+    if (playerSelection === computerSelection) {
+      console.log("Tie, play again");
+    } else {
+      playRound(playerSelection, computerSelection);
+      console.log(`You: ${playerScore} Computer: ${computerScore}`);
+    }
 
     if (playerScore === 5 || computerScore === 5) {
       break;
