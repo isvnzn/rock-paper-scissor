@@ -1,3 +1,5 @@
+console.log("Get 5 points to win.\n ");
+
 function getComputerChoice() {
   let choices = ["Rock", "Paper", "Scissors"];
   let computerSelect = Math.floor(Math.random() * choices.length);
@@ -49,7 +51,7 @@ function game() {
 
     switch (playerSelection) {
       case computerSelection:
-        console.log("Tie, play again");
+        console.log("Tie, play again.");
         break;
       case "rock":
       case "paper":
@@ -58,7 +60,7 @@ function game() {
         console.log(`You: ${playerScore} Computer: ${computerScore}`);
         break;
       default:
-        console.log("Something went wrong");
+        console.log("Something went wrong. Try again.");
         break;
     }
 
