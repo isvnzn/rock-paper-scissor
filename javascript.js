@@ -6,8 +6,15 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-  let win = `You Win! (You) ${playerSelection} beats (Computer) ${computerSelection}`;
-  let lose = `You Lose! (Computer) ${computerSelection} beats (You) ${playerSelection}`;
+  let playerPick = `${playerSelection
+    .at(0)
+    .toUpperCase()}${playerSelection.substring(1)}`;
+  let computerPick = `${computerSelection
+    .at(0)
+    .toUpperCase()}${computerSelection.substring(1)}`;
+
+  let win = `You Win!\n${playerPick} beats ${computerPick}`;
+  let lose = `You Lose!\n${computerPick} beats ${playerPick}`;
 
   switch (playerSelection) {
     case "rock":
@@ -26,7 +33,6 @@ function playRound(playerSelection, computerSelection) {
         : (console.log(lose), computerScore++);
       break;
     default:
-      console.log("Something went wrong");
       break;
   }
 }
@@ -41,11 +47,19 @@ function game() {
     let playerSelection = prompt("Rock, Paper or Scissors?").toLowerCase();
     let computerSelection = getComputerChoice().toLowerCase();
 
-    if (playerSelection === computerSelection) {
-      console.log("Tie, play again");
-    } else {
-      playRound(playerSelection, computerSelection);
-      console.log(`You: ${playerScore} Computer: ${computerScore}`);
+    switch (playerSelection) {
+      case computerSelection:
+        console.log("Tie, play again");
+        break;
+      case "rock":
+      case "paper":
+      case "scissors":
+        playRound(playerSelection, computerSelection);
+        console.log(`You: ${playerScore} Computer: ${computerScore}`);
+        break;
+      default:
+        console.log("Something went wrong");
+        break;
     }
 
     if (playerScore === 5 || computerScore === 5) {
