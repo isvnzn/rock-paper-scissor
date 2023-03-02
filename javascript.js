@@ -1,4 +1,22 @@
-console.log("Get 5 points to win.\n ");
+let playerSelection;
+let computerSelection;
+let playerScoreCtr = 0;
+let computerScoreCtr = 0;
+
+const playerScore = document.querySelector(".player-score");
+const computerScore = document.querySelector(".computer-score");
+const result = document.querySelector(".result");
+const picks = document.querySelectorAll(".rps");
+const reset = document.querySelector(".reset");
+
+playerScore.textContent = playerScoreCtr;
+computerScore.textContent = computerScoreCtr;
+
+picks.forEach((btn) => {
+  btn.addEventListener("click", (e) => playGame(e));
+});
+
+reset.addEventListener("click", resetGame);
 
 function getComputerChoice() {
   let choices = ["Rock", "Paper", "Scissors"];
@@ -21,59 +39,64 @@ function playRound(playerSelection, computerSelection) {
   switch (playerSelection) {
     case "rock":
       computerSelection === "scissors"
-        ? (console.log(win), playerScore++)
-        : (console.log(lose), computerScore++);
+        ? ((result.textContent = win), playerScoreCtr++)
+        : ((result.textContent = lose), computerScoreCtr++);
       break;
     case "paper":
       computerSelection === "rock"
-        ? (console.log(win), playerScore++)
-        : (console.log(lose), computerScore++);
+        ? ((result.textContent = win), playerScoreCtr++)
+        : ((result.textContent = lose), computerScoreCtr++);
       break;
     case "scissors":
       computerSelection === "paper"
-        ? (console.log(win), playerScore++)
-        : (console.log(lose), computerScore++);
+        ? ((result.textContent = win), playerScoreCtr++)
+        : ((result.textContent = lose), computerScoreCtr++);
       break;
     default:
       break;
   }
 }
 
-let playerScore = 0;
-let computerScore = 0;
+function playGame(e) {
+  playerSelection = e.target.value.toLowerCase();
+  computerSelection = getComputerChoice().toLowerCase();
 
-function game() {
-  let rounds = 100;
-
-  for (let i = 1; i < rounds; i++) {
-    let playerSelection = prompt("Rock, Paper or Scissors?").toLowerCase();
-    let computerSelection = getComputerChoice().toLowerCase();
-
-    switch (playerSelection) {
-      case computerSelection:
-        console.log("Tie, play again.");
-        break;
-      case "rock":
-      case "paper":
-      case "scissors":
-        playRound(playerSelection, computerSelection);
-        console.log(`You: ${playerScore} Computer: ${computerScore}`);
-        break;
-      default:
-        console.log("Something went wrong. Try again.");
-        break;
-    }
-
-    if (playerScore === 5 || computerScore === 5) {
+  switch (playerSelection) {
+    case computerSelection:
+      result.textContent = "Tie, play again.";
       break;
-    }
+    case "rock":
+    case "paper":
+    case "scissors":
+      playRound(playerSelection, computerSelection);
+      playerScore.textContent = playerScoreCtr;
+      computerScore.textContent = computerScoreCtr;
+      break;
+    default:
+      console.log("Something went wrong. Try again.");
+      break;
   }
 
-  if (playerScore > computerScore) {
-    console.log("VICTORY");
-  } else {
-    console.log("DEFEAT");
+  if (playerScoreCtr === 5 || computerScoreCtr === 5) {
+    picks.forEach((btn) => (btn.disabled = true));
+  }
+
+  getWinner();
+}
+
+function getWinner() {
+  if (playerScoreCtr === 5) {
+    result.textContent = "VICTORY";
+  } else if (computerScoreCtr === 5) {
+    result.textContent = "DEFEAT";
   }
 }
 
-game();
+function resetGame() {
+  playerScoreCtr = 0;
+  computerScoreCtr = 0;
+  playerScore.textContent = playerScoreCtr;
+  computerScore.textContent = computerScoreCtr;
+  result.textContent = "";
+  picks.forEach((btn) => (btn.disabled = false));
+}
