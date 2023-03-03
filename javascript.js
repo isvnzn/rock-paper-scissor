@@ -8,6 +8,9 @@ const computerScore = document.querySelector(".computer-score");
 const result = document.querySelector(".result");
 const picks = document.querySelectorAll(".rps");
 const reset = document.querySelector(".reset");
+const rock = document.querySelector(".rock");
+const paper = document.querySelector(".paper");
+const scissors = document.querySelector(".scissors");
 
 playerScore.textContent = playerScoreCtr;
 computerScore.textContent = computerScoreCtr;
@@ -58,7 +61,8 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function playGame(e) {
-  playerSelection = e.target.value.toLowerCase();
+  playerSelection = e.target.value;
+  console.log(e);
   computerSelection = getComputerChoice().toLowerCase();
 
   switch (playerSelection) {
@@ -79,6 +83,9 @@ function playGame(e) {
 
   if (playerScoreCtr === 5 || computerScoreCtr === 5) {
     picks.forEach((btn) => (btn.disabled = true));
+    rock.classList.add("rock-bw");
+    paper.classList.add("paper-bw");
+    scissors.classList.add("scissors-bw");
   }
 
   getWinner();
@@ -86,9 +93,9 @@ function playGame(e) {
 
 function getWinner() {
   if (playerScoreCtr === 5) {
-    result.textContent = "VICTORY";
+    result.textContent = "Victory!";
   } else if (computerScoreCtr === 5) {
-    result.textContent = "DEFEAT";
+    result.textContent = "Defeat";
   }
 }
 
@@ -99,4 +106,7 @@ function resetGame() {
   computerScore.textContent = computerScoreCtr;
   result.textContent = "";
   picks.forEach((btn) => (btn.disabled = false));
+  rock.classList.remove("rock-bw");
+  paper.classList.remove("paper-bw");
+  scissors.classList.remove("scissors-bw");
 }

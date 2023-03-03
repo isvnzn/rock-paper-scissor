@@ -5,29 +5,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock Paper Scissor</title>
+
+    <link rel="stylesheet" href="styles.css" />
     <script src="javascript.js" defer></script>
   </head>
   <body>
     <div class="container">
-      <h1>Rock Paper Scissors</h1>
-      <p>Get 5 points to win.</p>
-      <div class="score">
+      <section class="hero">
+        <h1>Rock Paper Scissors</h1>
+        <p>First player to reach 5 points wins.</p>
+      </section>
+      <section class="score">
         <div class="player">
-          <span>You</span>
+          <h2>You</h2>
           <span class="player-score"></span>
         </div>
         <div class="computer">
-          <span>Computer</span>
+          <h2>Computer</h2>
           <span class="computer-score"></span>
         </div>
-      </div>
+      </section>
       <div class="selection">
-        <button class="rps rock" value="rock">✊</button>
-        <button class="rps paper" value="paper">✋</button>
-        <button class="rps scissors" value="scissors">✌️</button>
+        <button
+          type="button"
+          class="rps rock"
+          value="rock"
+          title="Rock"
+        ></button>
+        <button
+          type="button"
+          class="rps paper"
+          value="paper"
+          title="Paper"
+        ></button>
+        <button
+          type="button"
+          class="rps scissors"
+          value="scissors"
+          title="Scissors"
+        ></button>
       </div>
       <span class="result"></span>
-      <button class="reset">Reset</button>
+      <button type="button" class="reset">Reset</button>
     </div>
   </body>
 </html>
